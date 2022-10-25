@@ -1,9 +1,12 @@
+import logging
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.db.database import SessionLocal
 from app.dependencies import get_token_header
 from app.crud import containerCRUD
+
 
 def get_db():
     db = SessionLocal()
@@ -12,6 +15,8 @@ def get_db():
     finally:
         db.close()
 
+
+logger = logging.getLogger("trainer")
 
 trainerRouter = APIRouter(
     prefix="/trainer/container",
@@ -31,6 +36,7 @@ async def getContainerData(
         experimentId: bytes
         , db: Session = Depends(get_db)
 ):
+    logger.info(f"Id : {experimentId}")
     container = containerCRUD.getContainerByExperimentId(db=db, experiment_id=experimentId)
     return container
 
