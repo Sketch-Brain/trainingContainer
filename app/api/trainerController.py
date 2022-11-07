@@ -55,6 +55,10 @@ async def insertRunnable(
     return {"success": True}
 
 
+@trainerRouter.get("/health")
+async def isReady():
+    return {"status":200}
+
 @trainerRouter.post("/run")
 async def runWorker(
         payload: dict = Body(...),
