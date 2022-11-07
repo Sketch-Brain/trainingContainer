@@ -1,14 +1,13 @@
-import logging
 from logging.config import dictConfig
 
 from fastapi import FastAPI, Depends
 
 
-from api import trainerController
+from app.api import trainerController
 from app.logging_config import logging_config
-from db.database import engine
-from dependencies import get_query_token
-from entity import containerEntity
+from app.db.database import engine
+from app.dependencies import get_query_token
+from app.entity import containerEntity
 
 containerEntity.Base.metadata.create_all(bind=engine)
 dictConfig(logging_config)

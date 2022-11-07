@@ -3,3 +3,4 @@ uvicorn
 tensorflow==2.10.0
 SQLAlchemy==1.4.42
 mysqlclient==2.1.1
+matplotlib==3.6.2
