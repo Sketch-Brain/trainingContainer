@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 logger = logging.getLogger("trainer")
 
-def runMnistExperiment(userId):
+async def runMnistExperiment(userId):
     #Load MNIST datasets
     mnist_dataset = tf.keras.datasets.mnist
     logger.info("run_trainings")
@@ -20,7 +20,9 @@ def runMnistExperiment(userId):
 
     # Created model load.
     model = create_model()
-    model.compile(optimizer=tf.keras.optimizers.Adam(lr=0.001),
+    input_shape = (None,28,28,1)
+    model.build(input_shape=input_shape)
+    model.compile(optimizer='adam',
                   loss='sparse_categorical_crossentropy',
                   metrics=['accuracy'])
     model.summary()

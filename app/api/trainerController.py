@@ -1,3 +1,4 @@
+import asyncio
 import logging
 import os
 
@@ -66,7 +67,7 @@ async def runWorker(
         db: Session = Depends(get_db)
 ):
     logger.info("Training run started.")
-    userId = os.environ.get("USER_ID")
-    # THIS IS TEST.
-    runs.runMnistExperiment()
+    userId = os.environ.get("userId")
+    # Background training Runs.
+    asyncio.create_task(runs.runMnistExperiment(userId=userId))
     return {"run": "success"}
