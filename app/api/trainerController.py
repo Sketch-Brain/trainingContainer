@@ -59,7 +59,8 @@ async def insertRunnable(
 async def isReady():
     return {"status":200}
 
-@trainerRouter.post("/run")
+
+@trainerRouter.patch("/run")
 async def runWorker(
         payload: dict = Body(...),
         db: Session = Depends(get_db)
