@@ -51,7 +51,9 @@ async def insertRunnable(
         payload: dict = Body(...)
         , db: Session = Depends(get_db)
 ):
-    experiment_id = ObjectId(payload['experimentId']).binary # Experiment Id 값으로 추출.
+    # 이 Bytes는 이미 database 형식과 모두 일치하는 형태로 experiment_id 가 온다.
+    experiment_id = bytes(payload['experimentId'], 'utf-8')
+    # experiment_id = ObjectId(payload['experimentId']).binary # Experiment Id 값으로 추출.
     runnable = payload['runnable'][:-2]  # Last char ',\n' delete.
     logger.info(f"Insert Runnable : {runnable}")
     await injectLayer(experiment_id=experiment_id, runnable=runnable, db=db)
