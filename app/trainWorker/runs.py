@@ -27,4 +27,7 @@ async def runMnistExperiment(userId):
                   metrics=['accuracy'])
     model.summary()
     # Run MNIST training.
-    history = model.fit(train_X, train_Y, epochs=30, validation_split=0.25)
+    history = model.fit(train_X, train_Y, epochs=5, validation_split=0.25, shuffle=True)
+
+    loss, acc = model.evaluate(test_X, test_Y, verbose=0)
+    logger.info(f"acc : {acc}, loss : {loss}")

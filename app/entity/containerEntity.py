@@ -13,3 +13,9 @@ class Container(Base):
     data_name = Column(VARCHAR(100))
     model_name = Column(VARCHAR(100))
     created_at = Column(TIMESTAMP)
+    X_TOKEN = Column(VARCHAR(10))
+    TOKEN = Column(VARCHAR(10))
+    # 11/8 Variable 추가로 인한 추가.
+    status = Column(VARCHAR(10))
+    python_source = Column(VARCHAR(300))
+    accuracy = Column(VARCHAR(10))
