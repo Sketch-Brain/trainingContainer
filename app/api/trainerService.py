@@ -5,7 +5,7 @@ import traceback
 logger = logging.getLogger("trainer")
 
 
-async def injectLayer(experiment_id,runnable,db):
+async def injectLayer(strExpId,experiment_id,runnable,db):
     try:
         with open("app/trainWorker/model.py", "rt") as file:
             reads = file.read()
