@@ -11,7 +11,7 @@ async def injectLayer(experiment_id,runnable,db):
             reads = file.read()
 
         with open("app/trainWorker/model.py", "wt") as file:
-            reads = reads.replace("#### LAYER DATA ###", runnable)
+            reads = reads.replace("### LAYER DATA ###", runnable)
             file.write(reads)
 
         logger.info(f"reads: {reads}")

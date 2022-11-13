@@ -24,7 +24,8 @@ async def updatePythonSources(db: Session, experiment_id: bytes, runnable: str):
     db.commit()
 
 
-async def updateStatus(db: Session, expriment_id: bytes, status: str):
+async def updateStatus(db: Session, experiment_id: bytes, status: str):
     logger.info(f"Update experiment Status to {status}")
-    db.query(Container).filter(Container.experiment_id == expriment_id).updatye({'status': status})
+    worker = db.query(Container).filter(Container.experiment_id == experiment_id).first()
+    worker.status = status
     db.commit()
