@@ -71,9 +71,10 @@ async def runWorker(
         db: Session = Depends(get_db)
 ):
     logger.info("Training run started.")
+    strExpId = payload['experimentId']
     experiment_id = ObjectId(payload['experimentId']).binary #Experiment_id 추가.
     userId = os.environ.get("userId")
     # Background training Runs.
     # FIXME model Load 하는 함수는, Background 작동하기 이전에 여기서 검사해야 함. 그래야, Request 돌려주기 전에 에러 검사 가능.
-    asyncio.create_task(runs.runMnistExperiment(db=db, userId=userId, experiment_id=experiment_id))
+    asyncio.create_task(runs.runMnistExperiment(db=db, userId=userId, experiment_id=experiment_id, strExpId=strExpId))
     return {"run": "success"}

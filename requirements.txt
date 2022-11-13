@@ -5,3 +5,5 @@ SQLAlchemy==1.4.42
 mysqlclient==2.1.1
 matplotlib==3.6.2
 bson==0.5.10
+aiohttp==3.8.3
+aiofiles==22.1.0
