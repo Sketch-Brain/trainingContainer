@@ -44,3 +44,4 @@ async def runMnistExperiment(db, userId, experiment_id, strExpId):
         traceback.print_exc()
         logger.info("Experiment error detected. Roll-back, Status Failed.")
         await updateStatus(db=db, experiment_id=experiment_id, status="Failed")
+        await sendResults(userId=userId, experimentId=strExpId, accuracy="Failed")
