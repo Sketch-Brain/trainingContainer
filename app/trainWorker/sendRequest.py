@@ -30,9 +30,9 @@ async def sendFiles(userId: str, experimentId: str):
 
     payload = {
         "user":userId
-    }
+    }#Changed to 8
     files = [
-        ('file', (experimentId[:6]+"model.py", binResult, 'application/octet-stream'))
+        ('file', (experimentId[:8]+"model.py", binResult, 'application/octet-stream'))
     ]
     headers = {}
 
